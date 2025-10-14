@@ -30,7 +30,7 @@ public class SocialLink {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "platform", length = 30, nullable = false)
-    private SocialPlatform platform;
+    private SocialPlatform socialPlatform;
 
     @Column(name = "url", nullable = false, length = 500)
     private String url;

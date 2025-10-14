@@ -35,12 +35,6 @@ public class Location {
     @Column(name = "country", nullable = false, length = 100)
     private String country;
 
-    @Column(name = "latitude")
-    private Double latitude;
-
-    @Column(name = "longitude")
-    private Double longitude;
-
     @Column(name = "created_by")
     private UUID createdBy;
 

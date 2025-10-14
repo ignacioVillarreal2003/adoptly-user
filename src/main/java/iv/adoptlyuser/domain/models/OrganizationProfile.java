@@ -72,6 +72,12 @@ public class OrganizationProfile {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @Column(name = "deleted_by")
+    private UUID deletedBy;
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", unique = true, nullable = false)
     private User user;

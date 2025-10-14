@@ -41,14 +41,6 @@ public class Preference {
     @Builder.Default
     private boolean emailNotificationsEnabled = true;
 
-    @Column(name = "push_notifications_enabled", nullable = false)
-    @Builder.Default
-    private boolean pushNotificationsEnabled = true;
-
-    @Column(name = "profile_visibility_public", nullable = false)
-    @Builder.Default
-    private boolean profileVisibilityPublic = true;
-
     @Column(name = "created_by")
     private UUID createdBy;
 
@@ -62,6 +54,12 @@ public class Preference {
     @LastModifiedDate
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @Column(name = "deleted_by")
+    private UUID deletedBy;
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", unique = true, nullable = false)
