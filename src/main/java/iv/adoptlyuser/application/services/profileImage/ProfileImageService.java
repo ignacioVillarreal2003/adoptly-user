@@ -7,6 +7,5 @@ import java.util.UUID;
 
 public interface ProfileImageService {
     Optional<ProfileImage> findById(UUID id);
-    void deleteById(UUID id);
     boolean existsById(UUID id);
 }

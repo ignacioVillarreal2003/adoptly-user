@@ -7,7 +7,5 @@ import java.util.UUID;
 
 public interface LocationService {
     Optional<Location> findById(UUID id);
-    Location update(Location location);
-    void deleteById(UUID id);
     boolean existsById(UUID id);
 }
