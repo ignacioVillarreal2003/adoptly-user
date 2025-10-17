@@ -72,9 +72,6 @@ public class IndividualProfile {
     @Column(name = "biography", columnDefinition = "TEXT")
     private String biography;
 
-    @Column(name = "profile_complete", nullable = false)
-    private boolean profileComplete = false;
-
     @Column(name = "created_by")
     private UUID createdBy;
 
@@ -88,12 +85,6 @@ public class IndividualProfile {
     @LastModifiedDate
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-
-    @Column(name = "deleted_by")
-    private UUID deletedBy;
-
-    @Column(name = "deleted_at")
-    private LocalDateTime deletedAt;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", unique = true, nullable = false)

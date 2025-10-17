@@ -47,12 +47,6 @@ public class User {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @Column(name = "deleted_by")
-    private UUID deletedBy;
-
-    @Column(name = "deleted_at")
-    private LocalDateTime deletedAt;
-
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private IndividualProfile individualProfile;
 

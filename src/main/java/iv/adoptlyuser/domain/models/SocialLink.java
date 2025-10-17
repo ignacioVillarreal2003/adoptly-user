@@ -35,19 +35,19 @@ public class SocialLink {
     @Column(name = "url", nullable = false, length = 500)
     private String url;
 
+    @Column(name = "created_by")
+    private UUID createdBy;
+
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(name = "updated_by")
+    private UUID updatedBy;
+
     @LastModifiedDate
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-
-    @Column(name = "created_by")
-    private UUID createdBy;
-
-    @Column(name = "updated_by")
-    private UUID updatedBy;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "individual_profile_id")

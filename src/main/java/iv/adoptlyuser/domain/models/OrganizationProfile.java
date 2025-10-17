@@ -55,9 +55,6 @@ public class OrganizationProfile {
     @Column(name = "verified_by")
     private UUID verifiedBy;
 
-    @Column(name = "profile_complete", nullable = false)
-    private boolean profileComplete = false;
-
     @Column(name = "created_by")
     private UUID createdBy;
 
@@ -71,12 +68,6 @@ public class OrganizationProfile {
     @LastModifiedDate
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-
-    @Column(name = "deleted_by")
-    private UUID deletedBy;
-
-    @Column(name = "deleted_at")
-    private LocalDateTime deletedAt;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", unique = true, nullable = false)

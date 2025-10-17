@@ -28,12 +28,12 @@ public class ProfileImage {
     @Column(name = "image_url", nullable = false, length = 500)
     private String imageUrl;
 
+    @Column(name = "created_by")
+    private UUID createdBy;
+
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
-
-    @Column(name = "created_by")
-    private UUID createdBy;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "individual_profile_id")

@@ -14,6 +14,4 @@ public interface OrganizationProfileDataService {
     OrganizationProfilePrivateResponse verifyOrganization();
     OrganizationProfilePrivateResponse rejectVerification();
     OrganizationProfilePrivateResponse updateVerificationStatus(VerificationStatus status);
-    boolean isVerified();
-    VerificationStatus getVerificationStatus();
 }
