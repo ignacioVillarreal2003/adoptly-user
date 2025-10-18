@@ -2,7 +2,9 @@ package iv.adoptlyuser.domain.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -33,6 +35,7 @@ public class User {
     @Column(name = "email", unique = true, nullable = false, length = 255)
     private String email;
 
+    @CreatedBy
     @Column(name = "created_by")
     private UUID createdBy;
 
@@ -40,6 +43,7 @@ public class User {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @LastModifiedBy
     @Column(name = "updated_by")
     private UUID updatedBy;
 
@@ -48,11 +52,11 @@ public class User {
     private LocalDateTime updatedAt;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private IndividualProfile individualProfile;
+    private IndividualProfile individualProfile = null;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private OrganizationProfile organizationProfile;
+    private OrganizationProfile organizationProfile = null;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private Preference preference;
+    private Preference preference = null;
 }

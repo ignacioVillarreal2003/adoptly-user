@@ -3,7 +3,9 @@ package iv.adoptlyuser.domain.models;
 import iv.adoptlyuser.domain.enums.SocialPlatform;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -35,6 +37,7 @@ public class SocialLink {
     @Column(name = "url", nullable = false, length = 500)
     private String url;
 
+    @CreatedBy
     @Column(name = "created_by")
     private UUID createdBy;
 
@@ -42,6 +45,7 @@ public class SocialLink {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @LastModifiedBy
     @Column(name = "updated_by")
     private UUID updatedBy;
 
@@ -51,9 +55,9 @@ public class SocialLink {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "individual_profile_id")
-    private IndividualProfile individualProfile;
+    private IndividualProfile individualProfile = null;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_profile_id")
-    private OrganizationProfile organizationProfile;
+    private OrganizationProfile organizationProfile = null;
 }

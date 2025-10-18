@@ -5,7 +5,9 @@ import iv.adoptlyuser.domain.enums.Genre;
 import iv.adoptlyuser.domain.enums.LivingSituation;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -53,25 +55,26 @@ public class IndividualProfile {
     private LocalDate dateOfBirth;
 
     @Column(name = "occupation", length = 100)
-    private String occupation;
+    private String occupation = null;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "marital_status")
-    private MaritalStatus maritalStatus;
+    private MaritalStatus maritalStatus = null;
 
     @Column(name = "children_count")
-    private Integer childrenCount;
+    private Integer childrenCount = null;
 
     @Column(name = "other_pets_description", columnDefinition = "TEXT")
-    private String otherPetsDescription;
+    private String otherPetsDescription = null;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "living_situation")
-    private LivingSituation livingSituation;
+    private LivingSituation livingSituation = null;
 
     @Column(name = "biography", columnDefinition = "TEXT")
-    private String biography;
+    private String biography = null;
 
+    @CreatedBy
     @Column(name = "created_by")
     private UUID createdBy;
 
@@ -79,6 +82,7 @@ public class IndividualProfile {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @LastModifiedBy
     @Column(name = "updated_by")
     private UUID updatedBy;
 
@@ -92,7 +96,7 @@ public class IndividualProfile {
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id", unique = true)
-    private Location location;
+    private Location location = null;
 
     @OneToMany(mappedBy = "individualProfile", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default

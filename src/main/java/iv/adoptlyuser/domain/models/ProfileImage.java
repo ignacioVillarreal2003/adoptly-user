@@ -2,7 +2,10 @@ package iv.adoptlyuser.domain.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
@@ -28,6 +31,7 @@ public class ProfileImage {
     @Column(name = "image_url", nullable = false, length = 500)
     private String imageUrl;
 
+    @CreatedBy
     @Column(name = "created_by")
     private UUID createdBy;
 
@@ -37,9 +41,9 @@ public class ProfileImage {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "individual_profile_id")
-    private IndividualProfile individualProfile;
+    private IndividualProfile individualProfile = null;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_profile_id")
-    private OrganizationProfile organizationProfile;
+    private OrganizationProfile organizationProfile = null;
 }

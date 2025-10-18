@@ -4,7 +4,9 @@ import iv.adoptlyuser.domain.enums.OrganizationType;
 import iv.adoptlyuser.domain.enums.VerificationStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -50,11 +52,12 @@ public class OrganizationProfile {
     private VerificationStatus verificationStatus = VerificationStatus.Pending;
 
     @Column(name = "verification_at")
-    private LocalDateTime verifiedAt;
+    private LocalDateTime verifiedAt = null;
 
     @Column(name = "verified_by")
-    private UUID verifiedBy;
+    private UUID verifiedBy = null;
 
+    @CreatedBy
     @Column(name = "created_by")
     private UUID createdBy;
 
@@ -62,6 +65,7 @@ public class OrganizationProfile {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @LastModifiedBy
     @Column(name = "updated_by")
     private UUID updatedBy;
 
@@ -75,7 +79,7 @@ public class OrganizationProfile {
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id", unique = true)
-    private Location location;
+    private Location location = null;
 
     @OneToMany(mappedBy = "organizationProfile", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default

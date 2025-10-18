@@ -4,7 +4,9 @@ import iv.adoptlyuser.domain.enums.Profile;
 import iv.adoptlyuser.domain.enums.Theme;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -30,7 +32,7 @@ public class Preference {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "active_profile")
-    private Profile activeProfile;
+    private Profile activeProfile = null;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "theme", nullable = false)
@@ -41,6 +43,7 @@ public class Preference {
     @Builder.Default
     private boolean emailNotificationsEnabled = true;
 
+    @CreatedBy
     @Column(name = "created_by")
     private UUID createdBy;
 
@@ -48,6 +51,7 @@ public class Preference {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @LastModifiedBy
     @Column(name = "updated_by")
     private UUID updatedBy;
 
