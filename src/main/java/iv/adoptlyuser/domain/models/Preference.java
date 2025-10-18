@@ -17,7 +17,6 @@ import java.util.UUID;
 @Table(name = "preferences", indexes = {
         @Index(name = "idx_preferences_user_id", columnList = "user_id")
 })
-@RequiredArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
 @AllArgsConstructor

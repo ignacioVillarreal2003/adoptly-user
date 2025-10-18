@@ -20,7 +20,6 @@ import java.util.UUID;
         @Index(name = "idx_organization_profiles_user_id", columnList = "user_id"),
         @Index(name = "idx_organization_profiles_verification", columnList = "verification_status")
 })
-@RequiredArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
 @AllArgsConstructor

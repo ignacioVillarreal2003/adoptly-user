@@ -16,7 +16,6 @@ import java.util.UUID;
         @Index(name = "idx_users_auth_id", columnList = "auth_id"),
         @Index(name = "idx_users_email", columnList = "email")
 })
-@RequiredArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
 @AllArgsConstructor

@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: adoptly-user
+
+  profiles:
+    active: dev
+
+server:
+  port: 8080

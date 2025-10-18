@@ -22,7 +22,6 @@ import java.util.UUID;
         @Index(name = "idx_individual_profiles_user_id", columnList = "user_id"),
         @Index(name = "idx_individual_profiles_username", columnList = "username")
 })
-@RequiredArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
 @AllArgsConstructor

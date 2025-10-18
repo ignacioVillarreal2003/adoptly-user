@@ -15,7 +15,6 @@ import java.util.UUID;
 @Table(name = "locations", indexes = {
         @Index(name = "idx_locations_city_country", columnList = "city, country")
 })
-@RequiredArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
 @AllArgsConstructor
