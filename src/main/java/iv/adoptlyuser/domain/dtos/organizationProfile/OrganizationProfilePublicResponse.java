@@ -4,7 +4,6 @@ import iv.adoptlyuser.domain.dtos.location.LocationPublicResponse;
 import iv.adoptlyuser.domain.dtos.profileImage.ProfileImagePublicResponse;
 import iv.adoptlyuser.domain.dtos.socialLink.SocialLinkPublicResponse;
 import iv.adoptlyuser.domain.enums.OrganizationType;
-import iv.adoptlyuser.domain.enums.VerificationStatus;
 import iv.adoptlyuser.domain.models.OrganizationProfile;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +22,6 @@ public class OrganizationProfilePublicResponse implements Serializable {
     private OrganizationType organizationType;
     private String description;
     private String phone;
-    private VerificationStatus verificationStatus;
     private LocationPublicResponse location;
     private List<ProfileImagePublicResponse> profileImages;
     private List<SocialLinkPublicResponse> socialLinks;
@@ -34,7 +32,6 @@ public class OrganizationProfilePublicResponse implements Serializable {
                 .organizationType(organizationProfile.getOrganizationType())
                 .description(organizationProfile.getDescription())
                 .phone(organizationProfile.getPhone())
-                .verificationStatus(organizationProfile.getVerificationStatus())
                 .location(LocationPublicResponse.fromEntity(organizationProfile.getLocation()))
                 .profileImages(organizationProfile.getProfileImages()
                         .stream()
