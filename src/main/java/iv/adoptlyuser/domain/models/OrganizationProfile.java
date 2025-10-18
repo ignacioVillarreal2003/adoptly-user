@@ -45,17 +45,6 @@ public class OrganizationProfile {
     @Column(name = "phone", length = 20)
     private String phone;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "verification_status", nullable = false)
-    @Builder.Default
-    private VerificationStatus verificationStatus = VerificationStatus.Pending;
-
-    @Column(name = "verification_at")
-    private LocalDateTime verifiedAt = null;
-
-    @Column(name = "verified_by")
-    private UUID verifiedBy = null;
-
     @CreatedBy
     @Column(name = "created_by")
     private UUID createdBy;

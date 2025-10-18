@@ -32,16 +32,6 @@ public class PreferenceDataServiceImpl implements PreferenceDataService {
     }
 
     @Override
-    public PreferencePrivateResponse updateTheme(Theme theme) {
-        User currentUser = authorizationHelperService.getCurrentUser();
-        Preference preference = getCurrentUserPreference(currentUser);
-
-        preference.setTheme(theme);
-        Preference savedPreference = preferenceRepository.save(preference);
-        return PreferencePrivateResponse.fromEntity(savedPreference);
-    }
-
-    @Override
     public PreferencePrivateResponse enableEmailNotifications() {
         User currentUser = authorizationHelperService.getCurrentUser();
         Preference preference = getCurrentUserPreference(currentUser);

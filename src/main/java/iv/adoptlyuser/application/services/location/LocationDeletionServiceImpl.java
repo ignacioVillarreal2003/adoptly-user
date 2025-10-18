@@ -8,8 +8,6 @@ import iv.adoptlyuser.infrastructure.persistence.repositories.LocationRepository
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
 @RequiredArgsConstructor
 public class LocationDeletionServiceImpl implements LocationDeletionService {
@@ -18,15 +16,11 @@ public class LocationDeletionServiceImpl implements LocationDeletionService {
     private final AuthorizationHelperService authorizationHelperService;
 
     @Override
-    public void permanentlyDelete(UUID locationId) {
+    public void permanentlyDelete() {
         User currentUser = authorizationHelperService.getCurrentUser();
         Location location = getCurrentUserLocation(currentUser);
 
-        if (!location.getId().equals(locationId)) {
-            throw new RuntimeException("Cannot delete location that doesn't belong to current user");
-        }
-
-        locationRepository.deleteById(locationId);
+        locationRepository.deleteById(location.getId());
     }
 
     private Location getCurrentUserLocation(User user) {

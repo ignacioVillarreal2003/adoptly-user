@@ -7,8 +7,6 @@ import iv.adoptlyuser.infrastructure.persistence.repositories.IndividualProfileR
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
 @RequiredArgsConstructor
 public class IndividualProfileDeletionServiceImpl implements IndividualProfileDeletionService {
@@ -17,17 +15,13 @@ public class IndividualProfileDeletionServiceImpl implements IndividualProfileDe
     private final AuthorizationHelperService authorizationHelperService;
 
     @Override
-    public void permanentlyDelete(UUID individualProfileId) {
+    public void permanentlyDelete() {
         authorizationHelperService.validateIndividualProfileAccess();
         
         User currentUser = authorizationHelperService.getCurrentUser();
         IndividualProfile profile = individualProfileRepository.findByUser_Id(currentUser.getId())
                 .orElseThrow(() -> new RuntimeException("Individual profile not found"));
 
-        if (!profile.getId().equals(individualProfileId)) {
-            throw new RuntimeException("Cannot delete profile that doesn't belong to current user");
-        }
-
-        individualProfileRepository.deleteById(individualProfileId);
+        individualProfileRepository.deleteById(profile.getId());
     }
 }

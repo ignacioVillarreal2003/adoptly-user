@@ -30,36 +30,6 @@ public class LocationDataServiceImpl implements LocationDataService {
         return LocationPrivateResponse.fromEntity(savedLocation);
     }
 
-    @Override
-    public LocationPrivateResponse updateAddress(String address) {
-        User currentUser = authorizationHelperService.getCurrentUser();
-        Location location = getCurrentUserLocation(currentUser);
-
-        location.setAddress(address);
-        Location savedLocation = locationRepository.save(location);
-        return LocationPrivateResponse.fromEntity(savedLocation);
-    }
-
-    @Override
-    public LocationPrivateResponse updateCity(String city) {
-        User currentUser = authorizationHelperService.getCurrentUser();
-        Location location = getCurrentUserLocation(currentUser);
-
-        location.setCity(city);
-        Location savedLocation = locationRepository.save(location);
-        return LocationPrivateResponse.fromEntity(savedLocation);
-    }
-
-    @Override
-    public LocationPrivateResponse updateCountry(String country) {
-        User currentUser = authorizationHelperService.getCurrentUser();
-        Location location = getCurrentUserLocation(currentUser);
-
-        location.setCountry(country);
-        Location savedLocation = locationRepository.save(location);
-        return LocationPrivateResponse.fromEntity(savedLocation);
-    }
-
     private Location getCurrentUserLocation(User user) {
         if (user.getIndividualProfile() != null
                 && user.getIndividualProfile().getLocation() != null

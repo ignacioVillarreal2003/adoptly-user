@@ -3,7 +3,6 @@ package iv.adoptlyuser.application.services.socialLink;
 import iv.adoptlyuser.application.services.AuthorizationHelperService;
 import iv.adoptlyuser.domain.dtos.socialLink.SocialLinkPrivateResponse;
 import iv.adoptlyuser.domain.dtos.socialLink.SocialLinkUpdateRequest;
-import iv.adoptlyuser.domain.enums.SocialPlatform;
 import iv.adoptlyuser.domain.models.SocialLink;
 import iv.adoptlyuser.domain.models.User;
 import iv.adoptlyuser.infrastructure.persistence.repositories.SocialLinkRepository;
@@ -27,26 +26,6 @@ public class SocialLinkDataServiceImpl implements SocialLinkDataService {
         if (request.socialPlatform() != null) socialLink.setSocialPlatform(request.socialPlatform());
         if (request.url() != null) socialLink.setUrl(request.url());
 
-        SocialLink savedSocialLink = socialLinkRepository.save(socialLink);
-        return SocialLinkPrivateResponse.fromEntity(savedSocialLink);
-    }
-
-    @Override
-    public SocialLinkPrivateResponse updateSocialPlatform(UUID socialLinkId, SocialPlatform socialPlatform) {
-        User currentUser = authorizationHelperService.getCurrentUser();
-        SocialLink socialLink = getSocialLinkByIdAndValidateOwnership(socialLinkId, currentUser);
-
-        socialLink.setSocialPlatform(socialPlatform);
-        SocialLink savedSocialLink = socialLinkRepository.save(socialLink);
-        return SocialLinkPrivateResponse.fromEntity(savedSocialLink);
-    }
-
-    @Override
-    public SocialLinkPrivateResponse updateUrl(UUID socialLinkId, String url) {
-        User currentUser = authorizationHelperService.getCurrentUser();
-        SocialLink socialLink = getSocialLinkByIdAndValidateOwnership(socialLinkId, currentUser);
-
-        socialLink.setUrl(url);
         SocialLink savedSocialLink = socialLinkRepository.save(socialLink);
         return SocialLinkPrivateResponse.fromEntity(savedSocialLink);
     }

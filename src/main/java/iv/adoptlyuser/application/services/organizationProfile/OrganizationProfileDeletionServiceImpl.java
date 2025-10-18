@@ -7,8 +7,6 @@ import iv.adoptlyuser.infrastructure.persistence.repositories.OrganizationProfil
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
 @RequiredArgsConstructor
 public class OrganizationProfileDeletionServiceImpl implements OrganizationProfileDeletionService {
@@ -17,17 +15,13 @@ public class OrganizationProfileDeletionServiceImpl implements OrganizationProfi
     private final AuthorizationHelperService authorizationHelperService;
 
     @Override
-    public void permanentlyDelete(UUID organizationProfileId) {
+    public void permanentlyDelete() {
         authorizationHelperService.validateOrganizationProfileAccess();
         
         User currentUser = authorizationHelperService.getCurrentUser();
         OrganizationProfile profile = organizationProfileRepository.findByUser_Id(currentUser.getId())
                 .orElseThrow(() -> new RuntimeException("Organization profile not found"));
 
-        if (!profile.getId().equals(organizationProfileId)) {
-            throw new RuntimeException("Cannot delete profile that doesn't belong to current user");
-        }
-
-        organizationProfileRepository.deleteById(organizationProfileId);
+        organizationProfileRepository.deleteById(profile.getId());
     }
 }
