@@ -10,9 +10,9 @@ public record OrganizationProfileCreateRequest(
         @NotNull
         OrganizationType organizationType,
 
-        @Size(max = 500)
+        @NotBlank @Size(max = 500)
         String description,
 
-        @Pattern(regexp = "\\+?[0-9\\- ]{7,15}", message = "Invalid phone number")
+        @NotBlank @Pattern(regexp = "\\+?[0-9\\- ]{7,15}", message = "Invalid phone number")
         String phone
 ) {}

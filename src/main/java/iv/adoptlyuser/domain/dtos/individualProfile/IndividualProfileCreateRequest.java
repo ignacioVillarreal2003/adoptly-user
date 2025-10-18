@@ -22,6 +22,6 @@ public record IndividualProfileCreateRequest(
         @NotNull
         LocalDate dateOfBirth,
 
-        @Pattern(regexp = "\\+?[0-9\\- ]{7,15}", message = "Invalid phone number")
+        @NotBlank @Pattern(regexp = "\\+?[0-9\\- ]{7,15}", message = "Invalid phone number")
         String phone
 ) {}
