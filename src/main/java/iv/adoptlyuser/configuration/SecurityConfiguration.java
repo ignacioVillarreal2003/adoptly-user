@@ -20,6 +20,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfiguration {
+
     private final AuthenticationFilter authenticationFilter;
     private final CorsProperties corsProperties;
 
@@ -43,10 +44,7 @@ public class SecurityConfiguration {
                         .anyRequest().authenticated())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .exceptionHandling(ex -> ex
-                        .authenticationEntryPoint((req, res, ex2) -> res.sendError(401))
-                        .accessDeniedHandler((req, res, ex3) -> res.sendError(403)));
+                .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
